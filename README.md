@@ -1,4 +1,4 @@
-# expenses - A new Flutter project.
+# Expenses - A new Flutter project.
 ## A study APP, made for me.
 
 ## Languages
