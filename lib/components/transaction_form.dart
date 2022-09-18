@@ -47,69 +47,79 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(10.0),
+    final mediaQuery = MediaQuery.of(context);
+    return SingleChildScrollView(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10.0),
+          ),
         ),
-      ),
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                labelText: 'Tituto',
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 8.0,
+            left: 8.0,
+            right: 8.0,
+            bottom: 8.0 + mediaQuery.viewInsets.bottom,
+          ),
+          child: Column(
+            children: <Widget>[
+              TextField(
+                controller: _titleController,
+                decoration: InputDecoration(
+                  labelText: 'Tituto',
+                ),
+                autofocus: true,
               ),
-            ),
-            TextField(
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              controller: _valueController,
-              onSubmitted: (_) => _submitForm(),
-              decoration: InputDecoration(
-                labelText: 'Valor R\$',
+              TextField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                controller: _valueController,
+                onSubmitted: (_) => _submitForm(),
+                decoration: InputDecoration(
+                  labelText: 'Valor R\$',
+                ),
+                autofocus: true,
               ),
-            ),
-            Container(
-              height: 36,
-              child: Row(
+              Container(
+                height: 36,
+                child: Row(
+                  children: [
+                    Text(
+                      _selectedDate == null
+                          ? 'Nenhuma data selecionada'
+                          : DateFormat('dd/MM/y').format(_selectedDate),
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextButton(
+                      child: Text(
+                        'Selecionar data',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: _showDatePicker,
+                    )
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    _selectedDate == null
-                        ? 'Nenhuma data selecionada'
-                        : DateFormat('dd/MM/y').format(_selectedDate),
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  TextButton(
+                  OutlinedButton(
                     child: Text(
-                      'Selecionar data',
+                      'Adicionar Transação',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontSize: 14,
                       ),
                     ),
-                    onPressed: _showDatePicker,
-                  )
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                OutlinedButton(
-                  child: Text(
-                    'Adicionar Transação',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
+                    onPressed: _submitForm,
                   ),
-                  onPressed: _submitForm,
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

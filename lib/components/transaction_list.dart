@@ -11,13 +11,14 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return transactions.isEmpty
         ? LayoutBuilder(builder: (ctx, constraints) {
             return Column(
               children: [
                 SizedBox(height: constraints.maxHeight * 0.05),
                 Container(
-                  height: constraints.maxHeight * 0.3,
+                  height: constraints.maxHeight * 0.1,
                   child: Text(
                     'Nenhuma transação cadastrada!',
                     style: Theme.of(context).textTheme.headline6,
@@ -64,11 +65,26 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                     DateFormat('d/MM/y').format(tr.date),
                   ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    color: Theme.of(context).errorColor,
-                    onPressed: () => onRemove(tr.id),
-                  ),
+                  trailing: mediaQuery.size.width > 520
+                      ? TextButton.icon(
+                          onPressed: () => onRemove(tr.id),
+                          icon: Icon(
+                            Icons.delete,
+                            size: 24,
+                            color: Colors.red[900],
+                          ),
+                          label: Text(
+                            'excluir',
+                            style: TextStyle(
+                              color: Colors.red[900],
+                            ),
+                          ),
+                        )
+                      : IconButton(
+                          icon: Icon(Icons.delete),
+                          color: Theme.of(context).errorColor,
+                          onPressed: () => onRemove(tr.id),
+                        ),
                 ),
               );
             }));
