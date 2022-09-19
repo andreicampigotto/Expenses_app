@@ -6,17 +6,20 @@ class AdaptativeButton extends StatelessWidget {
   final String? label;
   final Function? onPressed;
 
-  AdaptativeButton({this.label, this.onPressed});
+  const AdaptativeButton({
+    this.label,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Platform.isIOS
         ? CupertinoButton(
-            child: Text(label!),
             onPressed: (() => onPressed!),
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 16,
             ),
+            child: Text(label!),
           )
         : OutlinedButton(
             onPressed: () => onPressed!,

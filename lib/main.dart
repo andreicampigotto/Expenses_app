@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import '/components/chart.dart';
 import 'package:flutter/material.dart';
-import 'models/Transaction.dart';
+import 'models/transaction.dart';
 import 'components/transaction_form.dart';
 import 'dart:math';
 import 'components/transaction_list.dart';
@@ -21,13 +21,13 @@ class ExpensesApp extends StatelessWidget {
             secondary: Colors.amber,
           ),
           textTheme: tema.textTheme.copyWith(
-              headline6: TextStyle(
+              headline6: const TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           )),
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             titleTextStyle: TextStyle(
               fontFamily: 'OpenSans',
               fontSize: 20,
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
       return tr.date.isAfter(DateTime.now().subtract(
-        Duration(days: 7),
+        const Duration(days: 7),
       ));
     }).toList();
   }
@@ -118,11 +118,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final appBar = (Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Despesas pessoais'),
+            middle: const Text('Despesas pessoais'),
             trailing: Row(mainAxisSize: MainAxisSize.min, children: actions),
           )
         : AppBar(
-            title: Text('Despesas pessoais'),
+            title: const Text('Despesas pessoais'),
             actions: actions,
           )) as PreferredSizeWidget;
 
@@ -136,12 +136,12 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (_showChart || !isLandscape)
-              Container(
+              SizedBox(
                 height: availableHeight * (isLandscape ? 0.75 : 0.25),
                 child: Chart(_recentTransactions),
               ),
             if (!_showChart || !isLandscape)
-              Container(
+              SizedBox(
                 height: availableHeight * (isLandscape ? 1 : 0.75),
                 child: TransactionList(_transactions, _removeTransaction),
               )
@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Platform.isIOS
         ? CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
-              middle: Text('Despesas Pessoais'),
+              middle: const Text('Despesas Pessoais'),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: actions,
@@ -166,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Platform.isIOS
                 ? Container()
                 : FloatingActionButton(
-                    child: Icon(Icons.add),
+                    child: const Icon(Icons.add),
                     onPressed: () => _openTransActionFormModal(context),
                   ),
             floatingActionButtonLocation:

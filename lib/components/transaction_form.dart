@@ -6,7 +6,7 @@ import 'adaptative/adaptative_date_picker.dart';
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  const TransactionForm(this.onSubmit);
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
@@ -33,8 +33,8 @@ class _TransactionFormState extends State<TransactionForm> {
     final mediaQuery = MediaQuery.of(context);
     return SingleChildScrollView(
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: const BorderRadius.all(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
             Radius.circular(10.0),
           ),
         ),
@@ -56,7 +56,8 @@ class _TransactionFormState extends State<TransactionForm> {
                 controller: _valueController,
                 label: 'Valor R\$',
                 onSubmitted: (_) => _submitForm(),
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
               ),
               AdaptativeDatePicker(
                 selectedDate: _selectedDate,

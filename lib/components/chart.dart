@@ -1,12 +1,12 @@
 import '/components/chart_bar.dart';
 import 'package:flutter/material.dart';
-import '../models/Transaction.dart';
+import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
 
-  Chart(this.recentTransaction);
+  const Chart(this.recentTransaction);
 
   List<Map<String, Object>> get groupedTransactions {
     return List.generate(7, (index) {
@@ -43,7 +43,7 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
-      margin: EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 8),
+      margin: const EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: groupedTransactions.map((tr) {

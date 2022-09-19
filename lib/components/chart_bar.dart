@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class ChartBar extends StatelessWidget {
   final String? label;
   final double? value;
   final double? percent;
 
-  ChartBar({
+  const ChartBar({
     this.label,
     this.value,
     this.percent,
@@ -19,7 +18,7 @@ class ChartBar extends StatelessWidget {
         return Column(
           children: [
             SizedBox(height: constraints.maxHeight * 0.05),
-            Container(
+            SizedBox(
               height: constraints.maxHeight * 0.15,
               child: FittedBox(
                 child: Padding(
@@ -35,7 +34,7 @@ class ChartBar extends StatelessWidget {
               ),
             ),
             SizedBox(height: constraints.maxHeight * 0.05),
-            Container(
+            SizedBox(
               height: constraints.maxHeight * 0.50,
               width: 10,
               child: Stack(
@@ -47,7 +46,7 @@ class ChartBar extends StatelessWidget {
                           color: Colors.grey,
                           width: 1.0,
                         ),
-                        color: Color.fromRGBO(220, 220, 220, 1),
+                        color: const Color.fromRGBO(220, 220, 220, 1),
                         borderRadius: BorderRadius.circular(5)),
                   ),
                   FractionallySizedBox(
@@ -62,7 +61,7 @@ class ChartBar extends StatelessWidget {
               ),
             ),
             SizedBox(height: constraints.maxHeight * 0.05),
-            Container(
+            SizedBox(
               height: constraints.maxHeight * 0.15,
               child: FittedBox(
                 child: Text(
