@@ -7,18 +7,20 @@ import 'components/transaction_form.dart';
 import 'dart:math';
 import 'components/transaction_list.dart';
 
-void main() => runApp(ExpensesApp());
+void main() => runApp(const ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
+  const ExpensesApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData();
     return MaterialApp(
-      home: MyHomePage(),
+      home: const MyHomePage(),
       theme: tema.copyWith(
           colorScheme: tema.colorScheme.copyWith(
             primary: Colors.purple[400],
-            secondary: Colors.amber,
+            secondary: Colors.black87,
           ),
           textTheme: tema.textTheme.copyWith(
               headline6: const TextStyle(
@@ -39,6 +41,8 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }

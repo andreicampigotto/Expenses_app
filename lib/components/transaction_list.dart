@@ -6,7 +6,7 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final void Function(String) onRemove;
 
-  const TransactionList(this.transactions, this.onRemove);
+  const TransactionList(this.transactions, this.onRemove, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +39,7 @@ class TransactionList extends StatelessWidget {
             itemBuilder: ((ctx, index) {
               final tr = transactions[index];
               return TransactionItem(
+                key: GlobalObjectKey(tr),
                 tr: tr,
                 mediaQuery: mediaQuery,
                 onRemove: onRemove,
